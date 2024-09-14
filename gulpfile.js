@@ -5,6 +5,7 @@ const cleanCSS = require("gulp-clean-css");
 const autoprefixer = require("gulp-autoprefixer");
 const rename = require("gulp-rename");
 const htmlmin = require("gulp-htmlmin");
+const fileInclude = require('gulp-file-include');
 
 gulp.task("server", function () {
 	browserSync({
@@ -29,7 +30,7 @@ gulp.task("styles", function () {
 
 gulp.task("watch", function () {
 	gulp.watch("src/sass/**/*.+(scss|sass|css)", gulp.parallel("styles"));
-	gulp.watch("src/*.html").on("change", gulp.parallel("html"));
+	gulp.watch("src/**/*.html").on("change", gulp.parallel("html"));
 	gulp.watch("src/js/**/*.js").on("change", gulp.parallel("scripts"));
 	gulp.watch("src/fonts/**/*").on("all", gulp.parallel("fonts"));
 	gulp.watch("src/icons/**/*").on("all", gulp.parallel("icons"));
@@ -39,8 +40,15 @@ gulp.task("watch", function () {
 gulp.task("html", function () {
 	return gulp
 		.src("src/*.html")
+		.pipe(
+			fileInclude({
+				prefix: "@@",
+				basepath: "./src/html_modules",
+			})
+		)
 		.pipe(htmlmin({ collapseWhitespace: true }))
-		.pipe(gulp.dest("dist/"));
+		.pipe(gulp.dest("dist/"))
+		.pipe(browserSync.stream());
 });
 
 gulp.task("scripts", function () {
@@ -71,6 +79,13 @@ gulp.task("images", function () {
 		.pipe(browserSync.stream());
 });
 
+gulp.task("files", function () {
+	return gulp
+		.src("src/files/**/*")
+		.pipe(gulp.dest("dist/files"))
+		.pipe(browserSync.stream());
+});
+
 gulp.task(
 	"default",
 	gulp.parallel(
@@ -81,6 +96,7 @@ gulp.task(
 		"fonts",
 		"icons",
 		"html",
-		"images"
+		"images",
+		"files"
 	)
 );

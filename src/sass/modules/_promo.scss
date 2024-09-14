@@ -1,0 +1,40 @@
+.promo {
+  min-height: 100vh;
+  position: relative;
+  padding-top: 205px;
+  background: #DBE6F6;
+  background: -webkit-linear-gradient(to bottom, $main-color, $second-color);
+  background: linear-gradient(to bottom, $main-color, $second-color);
+
+  &__title {
+    width: 535px;
+    margin-top: 10px;
+  }
+
+  &__subtitle {
+    position: relative;
+    padding-left: 10px;
+    z-index: 2;
+    @include before_circle($second-color);
+  }
+
+  &__btns {
+    margin-top: 25px;
+    display: flex;
+    width: 250px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__link {
+    color: #000;
+    font-weight: bold;
+    transition: all 0.6s;
+
+    &:hover {
+      transform: scale(1.1);
+      color: #000;
+      text-decoration: none;
+    }
+  }
+}

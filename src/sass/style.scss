@@ -4,17 +4,28 @@
 @import "base/variables";
 @import "base/mixins";
 
-@import "blocks/sidePanel";
-@import "blocks/menu";
-@import "blocks/promo";
-@import "blocks/about";
-@import "blocks/title";
-@import "blocks/button";
+@import "base/elements/button";
+@import "base/elements/link";
+@import "base/elements/list";
+@import "base/elements/title";
+
+@import "modules/sidePanel";
+@import "modules/menu";
+@import "modules/promo";
+@import "modules/about";
+@import "modules/experience";
+@import "modules/skills";
+@import "modules/contacts";
+@import "modules/media";
 
 * {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 .container {

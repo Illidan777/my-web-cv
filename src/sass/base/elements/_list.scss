@@ -1,0 +1,39 @@
+.linearList {
+  list-style-type: none;
+  &__item {
+    position: relative;
+    &:after {
+      content: '';
+      width: 1px;
+      height: calc(100% + 16px);
+      position: absolute;
+      top: -16px;
+      left: 0;
+      background-color: #000;
+    }
+  }
+}
+
+.baseList {
+  display: table-row;
+  list-style: none;
+  &__item {
+    display: table-row;
+    transition: all 0.4s;
+    &::before {
+      display: table-cell;
+      text-align: right;
+      content: "+";
+      font-size: 1em;
+      font-weight: bold;
+      color: $main-color;
+      padding-right: 12px;
+    }
+    &:hover {
+      background-color: rgba(135, 26, 26, 0.1);
+    }
+    &:not(:first-of-type)::before {
+      padding-top: 12px;
+    }
+  }
+}

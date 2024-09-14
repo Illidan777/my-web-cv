@@ -1,27 +1,13 @@
-@mixin before_circle {
+@mixin before_circle($bg-color: $main-color) {
   &:before {
     content: '';
     position: absolute;
     width: 36px;
     height: 36px;
     border-radius: 100%;
-    background: $main-color;
+    background: $bg-color;
     z-index: -1;
     top: -25%;
     left: 0;
   }
 }
-
-//@mixin before_icon_circle {
-//  &:before {
-//    content: '';
-//    position: absolute;
-//    width: 36px;
-//    height: 36px;
-//    border-radius: 100%;
-//    background: $main-color;
-//    z-index: -1;
-//    top: -25%;
-//    left: 0;
-//  }
-//}
